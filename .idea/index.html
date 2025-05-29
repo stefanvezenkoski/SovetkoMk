@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>MindCare - Психолошка Поддршка</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #5a67d8;
+            --primary-dark: #0a873c;
+            --primary-light: #84c59f;
+            --secondary: #f6ad55;
+            --dark: #2d3748;
+            --light: #f7fafc;
+            --success: #6dd699;
+            --success1: #35b169;
+
+            --warning: #ed8936;
+            --danger: #f56565;
+            --gray: #e2e8f0;
+            --gray-dark: #cbd5e0;
+            --text: #4a5568;
+            --text-light: #718096;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Poppins', 'Noto Sans', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--text);
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(90, 103, 216, 0.1);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .circle:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            left: -50px;
+            animation-delay: 0s;
+        }
+
+        .circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 20%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .circle:nth-child(3) {
+            width: 400px;
+            height: 400px;
+            top: 60%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+
+        .circle:nth-child(4) {
+            width: 250px;
+            height: 250px;
+            top: 80%;
+            left: 70%;
+            animation-delay: 6s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(10px, 20px) rotate(5deg);
+            }
+            50% {
+                transform: translate(-15px, 10px) rotate(-5deg);
+            }
+            75% {
+                transform: translate(5px, -10px) rotate(3deg);
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .chatbox {
+            width: 100%;
+            max-width: 450px;
+            height: 80vh;
+            max-height: 700px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--success), var(--success));
+            color: white;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-header h2 {
+            font-weight: 600;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-header .icon {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--success1);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f9faff;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            line-height: 1.4;
+            box-shadow: var(--shadow);
+            position: relative;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.3s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .psychologist-logo {
+            max-width: 100px;
+            max-height: 60px;
+            margin-bottom: 10px;
+            border-radius: var(--radius-sm);
+            object-fit: contain;
+        }
+
+
+        .user-message {
+            background: linear-gradient(135deg, var(--success), var(--success));
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            animation-delay: 0.1s;
+        }
+
+        .bot-message {
+            background: white;
+            color: var(--text);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            border: 1px solid var(--gray);
+        }
+
+        .message-time {
+            display: block;
+            font-size: 0.7rem;
+            margin-top: 5px;
+            opacity: 0.7;
+            text-align: right;
+        }
+
+        .psychologist-card {
+            border: 1px solid var(--gray-dark);
+            border-radius: var(--radius-sm);
+            padding: 15px;
+            margin-top: 10px;
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .psychologist-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .psychologist-card p {
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .psychologist-card .contact {
+            font-weight: 500;
+            color: var(--success);
+        }
+
+        .psychologist-card .address {
+            font-style: italic;
+            color: var(--text-light);
+        }
+
+        .input-area {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid var(--gray);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--gray-dark);
+            border-radius: 30px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+            background-color: var(--light);
+        }
+
+        .message-input:focus {
+            border-color: var(--success);
+            box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
+        }
+
+        .send-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--success), var(--primary-dark));
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(90, 103, 216, 0.3);
+        }
+
+        .send-btn:active {
+            transform: translateY(0);
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: var(--gray);
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 3px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 15px;
+            background: white;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray);
+            align-self: flex-start;
+            margin-bottom: 5px;
+            display: none;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--text-light);
+            border-radius: 50%;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingAnimation {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .chatbox {
+                height: 90vh;
+                max-height: none;
+            }
+
+            .message {
+                max-width: 90%;
+            }
+        }
+
+        .message:hover {
+            transform: scale(1.02);
+            transition: var(--transition);
+        }
+
+        .message:nth-child(odd) {
+            animation-delay: 0.1s;
+        }
+
+        .message:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        .user-info-form {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 0;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: formEntrance 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        @keyframes formEntrance {
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--success);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            border-color: var(--success);
+            box-shadow: 0 0 0 3px rgba(107, 216, 90, 0.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--success), var(--primary-dark));
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::after {
+            content: '🚀';
+            position: absolute;
+            right: -30px;
+            transition: right 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:hover::after {
+            right: 15px;
+        }
+
+        .form-container {
+            display: none;
+        }
+
+        .form-container.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<!-- Додај го овој HTML пред chatbox контејнерот -->
+<div class="form-container active" id="formContainer">
+    <form class="user-info-form" id="userForm">
+        <h2 class="form-title">Да се запознаеме! 👋</h2>
+        <input type="text" class="form-input" id="firstName" placeholder="Твоето име" required>
+        <input type="text" class="form-input" id="city" placeholder="Твојот град" required>
+        <button type="submit" class="submit-btn">Почни авантура! 🌟</button>
+    </form>
+</div>
+
+<div class="background-animation">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+</div>
+
+<div class="container">
+    <div class="chatbox">
+        <div class="chat-header">
+            <h2>
+                <i class="fas fa-robot icon"></i>
+                СоветкоМк
+            </h2>
+            <div class="status">
+                <div class="status-dot"></div>
+                <span>Online</span>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="messages">
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+
+        <div class="input-area">
+            <input type="text" class="message-input" id="input" placeholder="Кажи ми како се чувствуваш..."
+                   autocomplete="off">
+            <button class="send-btn" id="sendBtn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let userData = {
+        firstName: '',
+        city: ''
+    };
+
+    const formContainer = document.getElementById('formContainer');
+    const userForm = document.getElementById('userForm');
+    const messagesContainer = document.getElementById('messages');
+    const input = document.getElementById('input');
+    const sendBtn = document.getElementById('sendBtn');
+    const typingIndicator = document.getElementById('typingIndicator');
+
+    let psychologistsData = {};
+
+    userForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        userData = {
+            firstName: document.getElementById('firstName').value.trim(),
+            city: document.getElementById('city').value.trim().toLowerCase()
+        };
+
+        formContainer.classList.remove('active');
+        startChatExperience();
+    });
+
+    async function loadPsychologistsData() {
+        try {
+            const response = await fetch('psychologists.json');
+            psychologistsData = await response.json();
+        } catch (error) {
+            console.error('Грешка при вчитување на податоците:', error);
+            addMessage('Се извинувам, имам технички проблеми. Обиди се повторно подоцна.', 'bot');
+        }
+    }
+
+    loadPsychologistsData();
+
+    function startChatExperience() {
+        const chatbox = document.querySelector('.chatbox');
+        chatbox.style.opacity = 0;
+        chatbox.style.transform = 'translateY(20px)';
+        chatbox.style.display = 'flex';
+
+        setTimeout(() => {
+            chatbox.style.opacity = 1;
+            chatbox.style.transform = 'translateY(0)';
+        }, 100);
+
+        const greeting = `Здраво ${userData.firstName}! ${getRandomEmoji()} Добредојде во твојата персонална зона за благосостојба.`;
+        const cityInfo = psychologistsData[userData.city]
+            ? `Забележав дека си од ${userData.city.toUpperCase()}.`
+            : 'Изгледа дека твојот град не е во нашиот регистар, но секако можам да ти помогнам!';
+
+        setTimeout(() => {
+            addMessage(greeting + ' ' + cityInfo, 'bot');
+        }, 800);
+
+        if (psychologistsData[userData.city]) {
+
+                const autoResponse = `Сакаш да видиш препораки за психолози во ${userData.city.toUpperCase()}? Ако одговорот е да, пиши "${userData.city.toUpperCase()}"`;
+                addMessage(autoResponse, 'bot');
+
+        }
+    }
+
+    function getRandomEmoji() {
+        const emojis = ['🌻', '🌟', '💫', '🌿', '🍃'];
+        return emojis[Math.floor(Math.random() * emojis.length)];
+    }
+
+    function getCurrentTime() {
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        hours = hours % 12 || 12;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+
+        return `${hours}:${minutes} ${ampm}`;
+    }
+
+    function addMessage(text, sender, isHTML = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', sender + '-message');
+
+        if (isHTML) {
+            messageDiv.innerHTML = text;
+        } else {
+            messageDiv.innerHTML = `
+                ${text}
+                <span class="message-time">${getCurrentTime()}</span>
+            `;
+        }
+
+        messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function createPsychologistCard(psychologist) {
+        return `
+        <div class="psychologist-card">
+            ${psychologist.image ? `<img src="${psychologist.image}" alt="${psychologist.name}" class="psychologist-logo">` : ''}
+            <h4>${psychologist.name}</h4>
+            <p class="contact"><i class="fas fa-phone"></i> ${psychologist.phone}</p>
+                    ${psychologist.webSite ? `<a href="${psychologist.webSite}" target="_blank">Веб-страна</a>` : ''}
+            <p class="address"><i class="fas fa-map-marker-alt"></i> ${psychologist.address}</p>
+            <p>${psychologist.description}</p>
+            <p><strong>Услуги:</strong> ${psychologist.services}</p>
+        </div>
+    `;
+    }
+
+    function showPsychologistsForCity(city) {
+        if (psychologistsData[city] && psychologistsData[city].length > 0) {
+            let response = `<strong>Психолози во ${city.toUpperCase()}:</strong><br><br>`;
+            psychologistsData[city].forEach(psychologist => {
+                response += createPsychologistCard(psychologist);
+            });
+            return response;
+        }
+        return 'Изгледа дека немаме препораки за твојот град, но можам да ти дадам генерални совети!';
+    }
+
+    function getBotResponse(userMessage) {
+        userMessage = userMessage.toLowerCase().trim();
+
+        const cities = Object.keys(psychologistsData);
+        for (const city of cities) {
+            if (userMessage.includes(city)) {
+                return showPsychologistsForCity(city);
+            }
+        }
+
+        const responses = {
+            'здраво|чао|hello|hi': 'Здраво! Како се чувствуваш денес?',
+            'како си|како сте': 'Јас сум добро, благодарам што праша! Како можам да ти помогнам денес?',
+            'стрес|напнатост|нервоз': 'Стресот е нормален дел од животот. Пробај да дишеш длабоко 5 пати...',
+            'депресија|тажно|лошо': 'Чувството на тага е нормално, но ако трае подолго...',
+            'сони|спиење|не можам да спијам': 'Добар сон е клучен за менталното здравје...',
+            'исхрана|храна|јадење': 'Здравата исхрана има големо влијание врз нашето расположение...',
+            'односи|пријатели|семејство': 'Здравите меѓучовечки односи се клучни...',
+            'благодарам|фала|ти благодарам': 'Нема на што! Секогаш сум тука да слушам и поддржам.',
+            'упражнување|спорт|вежбање': 'Редовната физичка активност ослободува ендорфини...',
+            'сам|осамено|осамени': 'Осаменоста може да биде тешка. Размисли да се приклучиш...',
+            'училиште|факултет|студент': 'Академскиот стрес е реален. Пробај да го организираш времето...',
+            'работа|кариера|посао': 'Работниот стрес може да биде предизвик...',
+            'град|градот|локација': 'Во кој град се наоѓаш? Можам да ти препорачам психолози...',
+            'добро|добро се чувствувам|убаво': 'Баш ми е мило. Како можам да ти помогнам денес?'
+        };
+
+        for (const [keywords, reply] of Object.entries(responses)) {
+            const keywordArray = keywords.split('|');
+            if (keywordArray.some(keyword => userMessage.includes(keyword))) {
+                return reply;
+            }
+        }
+
+        return "Се извинувам, но не разбирам целосно што сакаш да кажеш. Можеш ли да бидеш попрецизен/на?";
+    }
+
+    function sendMessage() {
+        const userMessage = input.value.trim();
+        if (!userMessage) return;
+
+        addMessage(userMessage, 'user');
+        input.value = '';
+        typingIndicator.style.display = 'flex';
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        setTimeout(() => {
+            const response = getBotResponse(userMessage);
+            typingIndicator.style.display = 'none';
+            addMessage(response, 'bot', response.includes('<div class="psychologist-card">'));
+        }, 1000);
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+</script>
+
+
+</body>
+</html>
