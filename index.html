@@ -1,36 +1,27 @@
 <!DOCTYPE html>
 <html lang="mk">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>SovetkoMk</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;700&display=swap"
-          rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SovetkoMk - Психолошка Поддршка</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #5a67d8;
-            --primary-dark: #0a873c;
+            --primary: #0a873c;
+            --primary-dark: #086d30;
             --primary-light: #84c59f;
             --secondary: #f6ad55;
-            --dark: #2d3748;
             --light: #f7fafc;
-            --success: #6dd699;
-            --success1: #35b169;
-
-            --warning: #ed8936;
-            --danger: #f56565;
-            --gray: #e2e8f0;
-            --gray-dark: #cbd5e0;
+            --dark: #2d3748;
             --text: #4a5568;
             --text-light: #718096;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --gray: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             --radius: 12px;
             --radius-sm: 8px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
         }
 
         * {
@@ -40,17 +31,12 @@
         }
 
         body, html {
-            margin: 0;
             height: 100%;
-            overflow: hidden;
-            font-family: 'Poppins', 'Noto Sans', sans-serif;
-            background-color: #f5f7ff;
-            color: var(--text);
-        }
-
-        body {
-            background-image: url("img_4.png");
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url("img_4.png");
             background-size: cover;
+            color: var(--dark);
+            overflow: auto;
         }
 
         .background-animation {
@@ -118,77 +104,145 @@
         }
 
         .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+        }
 
-        .chatbox {
-            width: 100%;
-            max-width: 592px;
-            height: 79vh;            max-height: 700px;
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            display: flex;
+            flex: 1;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .chat-section {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
             background: white;
             border-radius: var(--radius);
             box-shadow: var(--shadow-lg);
-            display: flex;
-            flex-direction: column;
             overflow: hidden;
             position: relative;
         }
 
+        .features-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+            box-shadow: 0 4px 6px rgba(10, 135, 60, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px rgba(10, 135, 60, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
 
         .chat-header {
-            background: linear-gradient(135deg, var(--success), var(--success));
+            background: var(--gradient);
             color: white;
-            padding: 18px 20px;
+            padding: 15px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .chat-header h2 {
-            font-weight: 600;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        .chat-header .icon {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
         }
 
         .status {
             display: flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.8rem;
-            opacity: 0.9;
+            font-size: 0.9rem;
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--success1);
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-            100% {
-                opacity: 1;
-            }
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
 
         .chat-messages {
@@ -199,43 +253,32 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            max-height: 400px;
         }
 
         .message {
             max-width: 80%;
             padding: 12px 16px;
             border-radius: var(--radius-sm);
-            font-size: 0.95rem;
+            font-size: 1rem;
             line-height: 1.4;
             box-shadow: var(--shadow);
             position: relative;
+            animation: fadeIn 0.5s ease-out;
             opacity: 0;
             transform: translateY(10px);
-            animation: fadeIn 0.3s forwards;
         }
 
         @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .psychologist-logo {
-            max-width: 100px;
-            max-height: 60px;
-            margin-bottom: 10px;
-            border-radius: var(--radius-sm);
-            object-fit: contain;
-        }
-
 
         .user-message {
-            background: linear-gradient(135deg, var(--success), var(--success));
+            background: var(--gradient);
             color: white;
             align-self: flex-end;
             border-bottom-right-radius: 4px;
-            animation-delay: 0.1s;
         }
 
         .bot-message {
@@ -248,14 +291,160 @@
 
         .message-time {
             display: block;
-            font-size: 0.7rem;
-            margin-top: 5px;
+            font-size: 0.75rem;
+            margin-top: 8px;
             opacity: 0.7;
             text-align: right;
         }
 
+        .input-area {
+            padding: 15px;
+            background: white;
+            border-top: 1px solid var(--gray);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+            background-color: var(--light);
+        }
+
+        .message-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10, 135, 60, 0.2);
+        }
+
+        .send-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .tip-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .tip-container h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .tip-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f5f9ff;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+        }
+
+        .tip-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tip-btn {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tip-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .survey-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .survey-container h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .survey-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .survey-option {
+            padding: 12px;
+            background: #f5f9ff;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .survey-option:hover {
+            background: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        .survey-option.selected {
+            background: var(--primary);
+            color: white;
+        }
+
+        .submit-survey {
+            margin-top: 15px;
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-survey:hover {
+            background: var(--primary-dark);
+        }
+
         .psychologist-card {
-            border: 1px solid var(--gray-dark);
+            border: 1px solid var(--gray);
             border-radius: var(--radius-sm);
             padding: 15px;
             margin-top: 10px;
@@ -276,74 +465,7 @@
 
         .psychologist-card .contact {
             font-weight: 500;
-            color: var(--success);
-        }
-
-        .psychologist-card .address {
-            font-style: italic;
-            color: var(--text-light);
-        }
-
-        .input-area {
-            padding: 15px;
-            background: white;
-            border-top: 1px solid var(--gray);
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .message-input {
-            flex: 1;
-            padding: 12px 15px;
-            border: 1px solid var(--gray-dark);
-            border-radius: 30px;
-            font-size: 0.95rem;
-            outline: none;
-            transition: var(--transition);
-            background-color: var(--light);
-        }
-
-        .message-input:focus {
-            border-color: var(--success);
-            box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
-        }
-
-        .send-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--success), var(--primary-dark));
-            color: white;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-
-        .send-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(90, 103, 216, 0.3);
-        }
-
-        .send-btn:active {
-            transform: translateY(0);
-        }
-
-        .chat-messages::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .chat-messages::-webkit-scrollbar-track {
-            background: var(--gray);
-        }
-
-        .chat-messages::-webkit-scrollbar-thumb {
-            background: var(--primary-light);
-            border-radius: 3px;
+            color: var(--primary);
         }
 
         .typing-indicator {
@@ -367,53 +489,18 @@
             animation: typingAnimation 1.4s infinite ease-in-out;
         }
 
-        .typing-dot:nth-child(1) {
-            animation-delay: 0s;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
         @keyframes typingAnimation {
-            0%, 60%, 100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-5px);
-            }
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
         }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-
-            .chatbox {
-                height: 90vh;
-                max-height: none;
-            }
-
-            .message {
-                max-width: 90%;
-            }
-        }
-
-        .message:hover {
-            transform: scale(1.02);
-            transition: var(--transition);
-        }
-
-        .message:nth-child(odd) {
-            animation-delay: 0.1s;
-        }
-
-        .message:nth-child(even) {
-            animation-delay: 0.2s;
+        .advice-card {
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+            border-left: 4px solid var(--primary);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-style: italic;
         }
 
         .user-info-form {
@@ -429,6 +516,7 @@
             z-index: 1000;
             animation: formEntrance 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
             max-width: 400px;
+            width: 90%;
             text-align: center;
         }
 
@@ -451,7 +539,7 @@
             display: block;
             width: 50px;
             height: 3px;
-            background: var(--success);
+            background: var(--primary);
             margin: 10px auto;
             border-radius: 2px;
         }
@@ -467,12 +555,12 @@
         }
 
         .form-input:focus {
-            border-color: var(--success);
-            box-shadow: 0 0 0 3px rgba(107, 216, 90, 0.2);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(10, 135, 60, 0.2);
         }
 
-        .submit-btn {
-            background: linear-gradient(135deg, var(--success), var(--primary-dark));
+        .form-submit-btn {
+            background: var(--gradient);
             color: white;
             padding: 12px 30px;
             border: none;
@@ -483,21 +571,11 @@
             margin-top: 15px;
             position: relative;
             overflow: hidden;
+            font-weight: 600;
         }
 
-        .submit-btn::after {
-            content: '🚀';
-            position: absolute;
-            right: -30px;
-            transition: right 0.3s ease;
-        }
-
-        .submit-btn:hover {
+        .form-submit-btn:hover {
             transform: translateY(-2px);
-        }
-
-        .submit-btn:hover::after {
-            right: 15px;
         }
 
         .form-container {
@@ -507,19 +585,62 @@
         .form-container.active {
             display: block;
         }
+
+        .suggest-btn {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .suggest-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .features-section {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .feature-card {
+                flex: 1;
+                min-width: 200px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .feature-card {
+                min-width: 100%;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .tip-buttons {
+                flex-direction: column;
+            }
+        }
+
+        #messages > div > div> img{
+            max-width: 100px;
+            height: auto;
+        }
     </style>
 </head>
-
 <body>
-<div class="form-container active" id="formContainer">
-    <form class="user-info-form" id="userForm">
-        <h2 class="form-title">Да се запознаеме! 👋</h2>
-        <input type="text" class="form-input" id="firstName" placeholder="Твоето име" required>
-        <input type="text" class="form-input" id="city" placeholder="Твојот град" required>
-        <button type="submit" class="submit-btn">Почни авантура! 🌟</button>
-    </form>
-</div>
-
 <div class="background-animation">
     <div class="circle"></div>
     <div class="circle"></div>
@@ -527,107 +648,174 @@
     <div class="circle"></div>
 </div>
 
-<div class="container">
-    <div class="chatbox">
-        <div class="chat-header">
-            <h2>
-                <i class="fas fa-robot icon"></i>
-                SovetkoMk
-            </h2>
-            <div class="status">
-                <div class="status-dot"></div>
-                <span>Online</span>
+<div class="form-container active" id="formContainer">
+    <form class="user-info-form" id="userForm">
+        <h2 class="form-title">Да се запознаеме! 👋</h2>
+        <input type="text" class="form-input" id="firstName" placeholder="Твоето име" required>
+        <input type="text" class="form-input" id="city" placeholder="Твојот град" required>
+        <button type="submit" class="form-submit-btn">Почни авантура! 🌟</button>
+    </form>
+</div>
+
+<div class="container" id="mainContainer" style="display: none;">
+    <header>
+        <h1><i class="fas fa-heart"></i> СоветкоМк</h1>
+        <p>Твојот виртуелен советник за ментално здравје, психолошка поддршка и здрава исхрана</p>
+    </header>
+
+    <div class="main-content">
+        <div class="chat-section">
+            <div class="chat-header">
+                <h2>
+                    <i class="fas fa-robot"></i>
+                    Психолошки Чатбот
+                </h2>
+                <div class="status">
+                    <div class="status-dot"></div>
+                    <span>Online</span>
+                </div>
+            </div>
+
+            <div class="chat-messages" id="messages">
+                <div class="typing-indicator" id="typingIndicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+
+            <div class="input-area">
+                <input type="text" class="message-input" id="input" placeholder="Кажи ми како се чувствуваш..." autocomplete="off">
+                <button class="send-btn" id="sendBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
         </div>
 
-        <div class="chat-messages" id="messages">
-            <div class="typing-indicator" id="typingIndicator">
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
+        <div class="features-section">
+            <div class="feature-card">
+                <i class="fas fa-apple-alt"></i>
+                <h3>Совети за Исхрана</h3>
+                <p>Добиј случаен совет за здрава исхрана</p>
+                <button class="btn" id="nutritionTipBtn">Добиј Совет</button>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-brain"></i>
+                <h3>Ментално Здравје</h3>
+                <p>Добиј совети за подобрување на твоето ментално здравје</p>
+                <button class="btn" id="mentalHealthTipBtn">Добиј Совет</button>
+            </div>
+
+            <div class="feature-card">
+                <i class="fas fa-stethoscope"></i>
+                <h3>Психолошка Поддршка</h3>
+                <p>Најди психолози во твојата близина</p>
+                <button class="btn" id="findPsychologistBtn">Побарај Психолози</button>
             </div>
         </div>
+    </div>
 
-        <div class="input-area">
-            <input type="text" class="message-input" id="input" placeholder="Кажи ми како се чувствуваш..."
-                   autocomplete="off">
-            <button class="send-btn" id="sendBtn">
-                <i class="fas fa-paper-plane"></i>
-            </button>
+    <div class="tip-container" id="tipContainer">
+        <h3><i class="fas fa-lightbulb"></i> Денешен Совет</h3>
+        <div class="tip-content" id="dailyTip">
+            Започни го денот со стакан топла вода и лимон. Ова го стимулира метаболизмот и го подготвува телото за денот.
         </div>
+        <div class="tip-buttons">
+            <button class="tip-btn" id="nextNutritionTip">Следен совет за исхрана</button>
+            <button class="tip-btn" id="nextMentalTip">Следен совет за ментално здравје</button>
+        </div>
+    </div>
+
+    <div class="survey-container">
+        <h3><i class="fas fa-poll"></i> Анкета за твоето здравје</h3>
+        <div class="survey-options">
+            <div class="survey-option" data-value="1">Редовно вежбам (3+ пати неделно)</div>
+            <div class="survey-option" data-value="2">Понекад вежбам (1-2 пати неделно)</div>
+            <div class="survey-option" data-value="3">Ретко вежбам (помалку од 1 пат неделно)</div>
+            <div class="survey-option" data-value="4">Не вежбам воопшто</div>
+        </div>
+        <button class="submit-survey">Поднеси одговор</button>
     </div>
 </div>
 
 <script>
+    // Податоци за корисникот
     let userData = {
         firstName: '',
         city: ''
     };
 
+    // DOM елементи
     const formContainer = document.getElementById('formContainer');
     const userForm = document.getElementById('userForm');
+    const mainContainer = document.getElementById('mainContainer');
     const messagesContainer = document.getElementById('messages');
     const input = document.getElementById('input');
     const sendBtn = document.getElementById('sendBtn');
     const typingIndicator = document.getElementById('typingIndicator');
+    const tipContainer = document.getElementById('tipContainer');
+    const dailyTip = document.getElementById('dailyTip');
+    const nutritionTipBtn = document.getElementById('nutritionTipBtn');
+    const mentalHealthTipBtn = document.getElementById('mentalHealthTipBtn');
+    const nextNutritionTip = document.getElementById('nextNutritionTip');
+    const nextMentalTip = document.getElementById('nextMentalTip');
+    const findPsychologistBtn = document.getElementById('findPsychologistBtn');
+    const surveyOptions = document.querySelectorAll('.survey-option');
+    const submitSurvey = document.querySelector('.submit-survey');
 
+    // Совет бази
+    const nutritionTips = [
+        "Јадете повеќе овошје и зеленчук. Се препорачува најмалку 5 порции дневно.",
+        "Пијте доволно вода. Препорачано е да се внесуваат 8 чаши вода на ден.",
+        "Ограничете го внесот на шеќер. Прекумерниот шеќер може да доведе до разни здравствени проблеми.",
+        "Вклучете целостени зрна во вашата исхрана. Тие се богати со влакна и хранливи материи.",
+        "Консумирајте здравословни масти. Авокадо, ореви и маслиново масло се одлични избори.",
+        "Внесете доволно протеини. Тие се важни за изградба и поправка на ткивата.",
+        "Не прескакајте оброци. Редовното јадење помага да се одржи стабилен ниво на шеќер во крвта.",
+        "Обидете се да готвите дома. Така ќе знаете што точно јадете.",
+        "Читајте ги етикетите на храна. Бидете свесни за содржините.",
+        "Важна е разновидноста. Јадете храна од сите бои за да обезбедите разни хранливи материи."
+    ];
+
+    const mentalHealthTips = [
+        "Направете паузи од дигиталните уреди. Одвојте време за себе без екрани.",
+        "Вежбајте редовно. Физичката активност ослободува ендорфини кои го подобрат расположението.",
+        "Спијте доволно. Квалитетниот сон е клучен за менталното здравје.",
+        "Вежбајте внимателност (mindfulness). Медитацијата може да го намали стресот.",
+        "Бидете во природа. Поминатот време на отворено може да го подобри расположението.",
+        "Одржувајте социјални врски. Разговарајте со пријатели и семејство.",
+        "Поставете реални цели. Поделете ги големите задачи на помали чекори.",
+        "Побарајте професионална помош ако ви треба. Не е срамно да се обратите кај стручњак.",
+        "Фокусирајте се на позитивните нешта. Ведете дневник на благодарност.",
+        "Научете да велат не. Поставете граници за да заштитите вашата енергија."
+    ];
+
+    const generalTips = [
+        "Практикувај длабоко дишење за да го намалиш стресот. Вдишувај бавно преку носот, задржи го здивот 3 секунди и издишувај преку устата.",
+        "Редовно вежбање го подобрува расположението и го намалува стресот. Пробај барем 30 минути физичка активност дневно.",
+        "Здрав сон е клучен за менталното здравје. Обиди се да спиеш 7-8 часа секоја ноќ и одржувај редовен распоред на спиење.",
+        "Пишувањето во дневник може да ти помогне да ги разбереш твоите чувства и мисли. Резервирај време секој ден за саморефлексија.",
+        "Зборувај со некој за кој веруваш дека ќе те слушне и поддржи. Споделувањето на твоите чувства може да ти помогне да се ослободиш од напнатоста.",
+        "Направи си време за активности кои те забавуваат и релаксираат. Хобијата се важни за менталното здравје.",
+        "Ограничи го времето поминато на социјалните мрежи за да се заштитиш од негативности и споредување со другите.",
+        "Вежбај благодарност. Секој ден запишувај три работи за кои си благодарен.",
+        "Природата има терапевтски ефект. Поминај време на отворено, во паркови или природа.",
+        "Не се споредувај со другите. Секој има свој пат и свои предизвици.",
+        "Научи да велеш 'не' кога се чувствуваш преоптоварено. Границите се важни за менталното здравје.",
+        "Практикувај медитација или свесност. Овие техники можат да ти помогнат да се фокусираш на сегашноста.",
+        "Создади си позитивна мантра што ќе ја повторуваш кога се чувствуваш вознемирено.",
+        "Организирај ја твојата работна и домашна средина. Чист и организиран простор може да го подобри расположението.",
+        "Обиди се да јадеш здрава и балансирана исхрана. Храната има директно влијание врз твоите чувства и енергија."
+    ];
+
+    // Податоци за психолози
     let psychologistsData = {};
 
-    userForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        userData = {
-            firstName: document.getElementById('firstName').value.trim(),
-            city: document.getElementById('city').value.trim().toLowerCase()
-        };
-
-        formContainer.classList.remove('active');
-        startChatExperience();
-    });
-
-    async function loadPsychologistsData() {
-        try {
-            const response = await fetch('psychologists.json');
-            psychologistsData = await response.json();
-        } catch (error) {
-            console.error('Грешка при вчитување на податоците:', error);
-            addMessage('Се извинувам, имам технички проблеми. Обиди се повторно подоцна.', 'bot');
-        }
-    }
-
-    loadPsychologistsData();
-
-    function startChatExperience() {
-        const chatbox = document.querySelector('.chatbox');
-        chatbox.style.opacity = 0;
-        chatbox.style.transform = 'translateY(20px)';
-        chatbox.style.display = 'flex';
-
-        setTimeout(() => {
-            chatbox.style.opacity = 1;
-            chatbox.style.transform = 'translateY(0)';
-        }, 100);
-
-        const greeting = `Здраво ${userData.firstName}! ${getRandomEmoji()} Добредојде во твојата персонална зона за благосостојба.`;
-        const cityInfo = psychologistsData[userData.city]
-            ? `Забележав дека си од ${userData.city.toUpperCase()}.`
-            : 'Изгледа дека твојот град не е во нашиот регистар, но секако можам да ти помогнам!';
-
-        setTimeout(() => {
-            addMessage(greeting + ' ' + cityInfo, 'bot');
-        }, 1000);
-
-        if (psychologistsData[userData.city]) {
-            setTimeout(() => {
-                const autoResponse = `Сакаш да видиш препораки за психолози во ${userData.city.toUpperCase()}? Ако одговорот е да, пиши "${userData.city.toUpperCase()}"`;
-                addMessage(autoResponse, 'bot');
-            }, 2000);
-        }
-    }
-
-    function getRandomEmoji() {
-        const emojis = ['🌻', '🌟', '💫', '🌿', '🍃'];
-        return emojis[Math.floor(Math.random() * emojis.length)];
+    // Функции
+    function getRandomTip(tipArray) {
+        const randomIndex = Math.floor(Math.random() * tipArray.length);
+        return tipArray[randomIndex];
     }
 
     function getCurrentTime() {
@@ -656,6 +844,8 @@
         }
 
         messagesContainer.appendChild(messageDiv);
+        messageDiv.style.opacity = '1';
+        messageDiv.style.transform = 'translateY(0)';
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
@@ -679,9 +869,10 @@
             psychologistsData[city].forEach(psychologist => {
                 response += createPsychologistCard(psychologist);
             });
-            return response;
+            addMessage(response, 'bot', true);
+        } else {
+            addMessage('Изгледа дека немаме препораки за твојот град, но можам да ти дадам генерални совети!', 'bot');
         }
-        return 'Изгледа дека немаме препораки за твојот град, но можам да ти дадам генерални совети!';
     }
 
     function getBotResponse(userMessage) {
@@ -695,20 +886,21 @@
         }
 
         const responses = {
-            'здраво|чао|hello|hi': 'Здраво! Како се чувствуваш денес?',
+            'здраво|чао|hello|hi': `Здраво ${userData.firstName}! Како се чувствуваш денес?`,
             'како си|како сте': 'Јас сум добро, благодарам што праша! Како можам да ти помогнам денес?',
-            'стрес|напнатост|нервоз': 'Стресот е нормален дел од животот. Пробај да дишеш длабоко 5 пати...',
-            'депресија|тажно|лошо': 'Чувството на тага е нормално, но ако трае подолго...',
-            'сони|спиење|не можам да спијам': 'Добар сон е клучен за менталното здравје...',
-            'исхрана|храна|јадење': 'Здравата исхрана има големо влијание врз нашето расположение...',
-            'односи|пријатели|семејство': 'Здравите меѓучовечки односи се клучни...',
-            'благодарам|фала|ти благодарам': 'Нема на што! Секогаш сум тука да слушам и поддржам.',
-            'упражнување|спорт|вежбање': 'Редовната физичка активност ослободува ендорфини...',
-            'сам|осамено|осамени': 'Осаменоста може да биде тешка. Размисли да се приклучиш...',
-            'училиште|факултет|студент': 'Академскиот стрес е реален. Пробај да го организираш времето...',
-            'работа|кариера|посао': 'Работниот стрес може да биде предизвик...',
+            'стрес|напнатост|нервоз': `Стресот е нормален дел од животот. Пробај да дишеш длабоко 5 пати. Еве еден совет: ${getRandomTip(generalTips)}`,
+            'депресија|тажно|лошо': `Чувството на тага е нормално, но ако трае подолго, можеби е добро да се обратиш како професионалец. Еве еден совет: ${getRandomTip(generalTips)}`,
+            'сони|спиење|не можам да спијам': `Добар сон е клучен за менталното здравје. ${getRandomTip(generalTips)}`,
+            'исхрана|храна|јадење': `Здравата исхрана има големо влијание врз нашето расположение. ${getRandomTip(generalTips)}`,
+            'односи|пријатели|семејство': `Здравите меѓучовечки односи се клучни за нашето благосостојба. ${getRandomTip(generalTips)}`,
+            'благодарам|фала|ти благодарам': `Нема на што! Секогаш сум тука да слушам и поддржам. ${getRandomTip(generalTips)}`,
+            'упражнување|спорт|вежбање': `Редовната физичка активност ослободува ендорфини кои го подобруваат расположението. ${getRandomTip(generalTips)}`,
+            'сам|осамено|осамени': `Осаменоста може да биде тешка. Размисли да се приклучиш на групи или клубови. ${getRandomTip(generalTips)}`,
+            'училиште|факултет|студент': `Академскиот стрес е реален. Пробај да го организираш времето. ${getRandomTip(generalTips)}`,
+            'работа|кариера|посао': `Работниот стрес може да биде предизвик. ${getRandomTip(generalTips)}`,
             'град|градот|локација': 'Во кој град се наоѓаш? Можам да ти препорачам психолози...',
-            'добро|добро се чувствувам|убаво': 'Баш ми е мило. Како можам да ти помогнам денес?'
+            'добро|добро се чувствувам|убаво': 'Баш ми е мило. Како можам да ти помогнам денес?',
+            'совет|совети|советувај|tip|tips': `Еве еден совет за тебе: ${getRandomTip(generalTips)}`
         };
 
         for (const [keywords, reply] of Object.entries(responses)) {
@@ -718,7 +910,7 @@
             }
         }
 
-        return "Се извинувам, но не разбирам целосно што сакаш да кажеш. Можеш ли да бидеш попрецизен/на?";
+        return `Се извинувам, но не разбирам целосно што сакаш да кажеш. Еве ти еден совет: ${getRandomTip(generalTips)}`;
     }
 
     function sendMessage() {
@@ -733,16 +925,119 @@
         setTimeout(() => {
             const response = getBotResponse(userMessage);
             typingIndicator.style.display = 'none';
-            addMessage(response, 'bot', response.includes('<div class="psychologist-card">'));
+
+            if (typeof response === 'string') {
+                addMessage(response, 'bot');
+            }
         }, 1000);
     }
 
-    sendBtn.addEventListener('click', sendMessage);
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') sendMessage();
+    // Вчитување на податоците за психолозите
+    async function loadPsychologistsData() {
+        try {
+            const response = await fetch('psychologists.json');
+            psychologistsData = await response.json();
+            console.log('Податоците за психолозите се успешно вчитани');
+        } catch (error) {
+            console.error('Грешка при вчитување на податоците за психолози:', error);
+            addMessage('Се извинувам, имам технички проблеми со податоците за психолози. Обиди се повторно подоцна.', 'bot');
+        }
+    }
+
+    // Иницијализација
+    dailyTip.textContent = getRandomTip(nutritionTips);
+    loadPsychologistsData();
+
+    // Event Listeners
+    userForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        userData = {
+            firstName: document.getElementById('firstName').value.trim(),
+            city: document.getElementById('city').value.trim().toLowerCase()
+        };
+
+        formContainer.classList.remove('active');
+        mainContainer.style.display = 'flex';
+
+        // Прикажи поздрав
+        setTimeout(() => {
+            const greeting = `Здраво ${userData.firstName}! Добредојде во твојата персонална зона за благосостојба.`;
+            const cityInfo = psychologistsData[userData.city]
+                ? `Забележав дека си од ${userData.city.toUpperCase()}.`
+                : 'Изгледа дека твојот град не е во нашиот регистар, но секако можам да ти помогнам!';
+
+            addMessage(greeting + ' ' + cityInfo, 'bot');
+
+            if (psychologistsData[userData.city]) {
+                setTimeout(() => {
+                    const autoResponse = `Сакаш да видиш препораки за психолози во ${userData.city.toUpperCase()}? Кликни на копчето подолу.`;
+                    const suggestBtn = `<button class="suggest-btn" onclick="showPsychologistsForCity('${userData.city}')">Покажи психолози во ${userData.city.toUpperCase()}</button>`;
+                    addMessage(autoResponse + '<br>' + suggestBtn, 'bot', true);
+                }, 1000);
+            }
+
+            // Додади случаен совет на почеток
+            setTimeout(() => {
+                const randomTip = getRandomTip(generalTips);
+                const tipMessage = `<div class="advice-card"><strong>Совет за тебе:</strong> ${randomTip}</div>`;
+                addMessage(tipMessage, 'bot', true);
+            }, 2000);
+        }, 500);
     });
+
+    nutritionTipBtn.addEventListener('click', () => {
+        addMessage(getRandomTip(nutritionTips), 'bot');
+    });
+
+    mentalHealthTipBtn.addEventListener('click', () => {
+        addMessage(getRandomTip(mentalHealthTips), 'bot');
+    });
+
+    nextNutritionTip.addEventListener('click', () => {
+        dailyTip.textContent = getRandomTip(nutritionTips);
+    });
+
+    nextMentalTip.addEventListener('click', () => {
+        dailyTip.textContent = getRandomTip(mentalHealthTips);
+    });
+
+    findPsychologistBtn.addEventListener('click', () => {
+        addMessage("Во кој град барате психолог?", 'bot');
+    });
+
+    sendBtn.addEventListener('click', sendMessage);
+
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Анкета функционалност
+    surveyOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            // Отстрани претходно избрано
+            surveyOptions.forEach(opt => opt.classList.remove('selected'));
+
+            // Додади избрано на сегашниот
+            option.classList.add('selected');
+        });
+    });
+
+    submitSurvey.addEventListener('click', () => {
+        const selectedOption = document.querySelector('.survey-option.selected');
+        if (selectedOption) {
+            addMessage("Фала за учеството во анкетата! Вашиот одговор е забележан.", 'bot');
+            surveyOptions.forEach(opt => opt.classList.remove('selected'));
+        } else {
+            addMessage("Ве молиме изберете опција пред да ја поднесете анкетата.", 'bot');
+        }
+    });
+
+    // Глобални функции за пристап од HTML
+    window.getRandomTip = getRandomTip;
+    window.showPsychologistsForCity = showPsychologistsForCity;
 </script>
-
-
 </body>
 </html>
